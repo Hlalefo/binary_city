@@ -20,6 +20,7 @@ def client_list():
         return jsonify({'success': True})
     
     clients = Client.get_all_clients()
+    print(clients)
     return render_template('client_list.html', clients=clients)
 
 @app.route('/contacts', methods=['GET', 'POST'])
@@ -40,6 +41,7 @@ def contact_list():
         return jsonify({'success': True})
 
     contacts = Contact.get_all_contacts()
+    print(contacts)
     return render_template('contact_list.html', contacts=contacts)
 
 def validate_email(email):
