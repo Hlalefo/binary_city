@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Clients</h1>
+
+<!-- Client Form -->
+<form id="client-form">
+    <label for="name">Client Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit" class="btn">Add Client</button>
+    <div id="client-message"></div>
+</form>
+
+<!-- Client List -->
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Client Code</th>
+            <th>Linked Contacts</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client[1] }}</td>
+            <td>{{ client[2] }}</td>
+            <td>
+                <ul>
+                    {% for contact in Client.get_linked_contacts(client[0]) %}
+                    <li>{{ contact[0] }} {{ contact[1] }}
+                        <a href="{{ url_for('unlink_contact', client_id=client[0], contact_id=contact[2]) }}">Unlink</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{{ url_for('link_contact', client_id=client[0], contact_id=0) }}">Link Contact</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No Client(s) found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- AJAX Script for Client Form -->
+<script>
+    document.getElementById('client-form').onsubmit = function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch('/clients', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('client-message');
+                if (data.success) {
+                    messageElement.textContent = 'Client added successfully.';
+                    messageElement.style.color = 'green';
+                    location.reload();
+                } else {
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'red';
+                }
+            });
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    /* Dark background */
+    color: #ffffff;
+    /* White text color */
+}
+
+header {
+    background-color: #000000;
+    /* Black background for header */
+    color: #ffffff;
+    /* White text color */
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    /* White text for navigation links */
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    background-color: #1a1a1a;
+    /* Slightly lighter black for the main content area */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    /* Same as main content background */
+}
+
+table,
+th,
+td {
+    border: 1px solid #333333;
+    /* Dark grey borders */
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #d32f2f;
+    /* Red background for table headers */
+    color: #ffffff;
+    /* White text color */
+}
+
+button,
+.btn {
+    background-color: #d32f2f;
+    /* Red buttons */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #b71c1c;
+    /* Darker red on hover */
+}
